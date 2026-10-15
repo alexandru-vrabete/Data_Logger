@@ -1,0 +1,19 @@
+# Minimal Doxygen configuration. Unlisted options keep their defaults.
+# Generate docs with: doxygen Doxyfile   (output in docs/html/index.html)
+
+PROJECT_NAME          = "ESP32 Data Logger"
+PROJECT_BRIEF         = "Temperature and humidity logger for ESP32 (ESP-IDF, FreeRTOS)"
+
+OUTPUT_DIRECTORY      = docs
+INPUT                 = main
+FILE_PATTERNS         = *.c *.h
+RECURSIVE             = YES
+
+OPTIMIZE_OUTPUT_FOR_C = YES
+EXTRACT_ALL           = YES
+EXTRACT_STATIC        = YES
+JAVADOC_AUTOBRIEF     = YES
+
+GENERATE_HTML         = YES
+GENERATE_LATEX        = NO
+QUIET                 = YES

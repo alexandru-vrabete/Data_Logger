@@ -18,6 +18,9 @@ __pycache__/
 venv/
 env/
 
+# Doxygen generated docs
+/docs/
+
 # Logger output
 sensor_data.csv
 

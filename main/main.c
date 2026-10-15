@@ -1,3 +1,7 @@
+/**
+ * @file main.c
+ * @brief Application entry point: peripherals, queue, watchdog and tasks.
+ */
 #include <stdbool.h>
 
 #include "sensor_driver.h"
@@ -24,7 +28,11 @@ static const char *TAG = "main";
 
 static QueueHandle_t sensor_queue;
 
-// Toggle the status LED so we can see the system is alive.
+/**
+ * @brief Task that toggles the status LED to show the system is alive.
+ *
+ * @param arg Unused.
+ */
 static void heartbeat_task(void *arg)
 {
     bool level = false;
@@ -35,6 +43,9 @@ static void heartbeat_task(void *arg)
     }
 }
 
+/**
+ * @brief Initialise the task watchdog, reconfiguring it if already running.
+ */
 static void wdt_setup(void)
 {
     esp_task_wdt_config_t cfg = {
@@ -50,6 +61,12 @@ static void wdt_setup(void)
     }
 }
 
+/**
+ * @brief Application entry point.
+ *
+ * Sets up the LED, peripherals, the shared queue and the watchdog, then
+ * starts the sensor, logger and heartbeat tasks.
+ */
 void app_main(void)
 {
     // Status LED.

@@ -1,3 +1,7 @@
+/**
+ * @file logger_task.c
+ * @brief UART setup and the task that streams samples as JSON lines.
+ */
 #include "logger_task.h"
 #include "sensor_driver.h"
 

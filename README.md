@@ -71,6 +71,16 @@ The script reads the data UART, parses each JSON line and appends a row to
 `sensor_data.csv`. Lines that are not valid samples (boot messages, etc.) are
 ignored.
 
+## Documentation
+
+The source is annotated with Doxygen comments. Generate the HTML docs with:
+
+```bash
+doxygen Doxyfile
+```
+
+Open `docs/html/index.html` afterwards.
+
 ## Data format
 
 **UART output** — one JSON object per line:

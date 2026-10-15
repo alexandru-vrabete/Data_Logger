@@ -1,3 +1,7 @@
+/**
+ * @file sensor_driver.c
+ * @brief SHT31 I2C driver and the sensor sampling task.
+ */
 #include "sensor_driver.h"
 
 #include <stdint.h>
@@ -31,7 +35,13 @@
 
 static const char *TAG = "sensor";
 
-// CRC-8 used by the SHT31 (polynomial 0x31, init 0xFF).
+/**
+ * @brief Compute the SHT31 CRC-8 (polynomial 0x31, init 0xFF).
+ *
+ * @param data Bytes to checksum.
+ * @param len  Number of bytes.
+ * @return The computed CRC-8.
+ */
 static uint8_t sht31_crc8(const uint8_t *data, int len)
 {
     uint8_t crc = 0xFF;
