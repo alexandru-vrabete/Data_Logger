@@ -15,19 +15,19 @@
 #include "freertos/queue.h"
 #include "freertos/semphr.h"
 
-// Dedicated data UART, kept separate from the console on UART0.
+/* Dedicated data UART, kept separate from the console on UART0. */
 #define LOG_UART_PORT   UART_NUM_1
 #define LOG_UART_TX     17
 #define LOG_UART_RX     16
 #define LOG_UART_BAUD   115200
 #define LOG_UART_BUF    512
 
-// Block up to 2 s waiting for a sample so we can still feed the watchdog.
+/* Block up to 2 s waiting for a sample so we can still feed the watchdog. */
 #define QUEUE_WAIT_MS   2000
 
 static const char *TAG = "logger";
 
-// Protects the UART from concurrent writes.
+/* Protects the UART from concurrent writes. */
 static SemaphoreHandle_t uart_mutex;
 
 esp_err_t logger_init(void)
@@ -78,7 +78,7 @@ void uart_logger_task(void *arg)
                                "{\"temp\": %.2f, \"hum\": %.2f}\r\n",
                                sample.temperature_c, sample.humidity_pct);
 
-            // Only one writer on the UART at a time.
+            /* Only one writer on the UART at a time. */
             if (xSemaphoreTake(uart_mutex, portMAX_DELAY) == pdTRUE) {
                 uart_write_bytes(LOG_UART_PORT, line, len);
                 xSemaphoreGive(uart_mutex);

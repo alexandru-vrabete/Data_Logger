@@ -14,14 +14,14 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 
-// Heartbeat LED
+/* Heartbeat LED */
 #define LED_PIN         2
 #define LED_PERIOD_MS   500
 
-// Shared queue holding sensor samples.
+/* Shared queue holding sensor samples. */
 #define QUEUE_LENGTH    10
 
-// Watchdog timeout for the registered tasks.
+/* Watchdog timeout for the registered tasks. */
 #define WDT_TIMEOUT_MS  5000
 
 static const char *TAG = "main";
@@ -54,7 +54,7 @@ static void wdt_setup(void)
         .trigger_panic = true,
     };
 
-    // The watchdog may already be running from the default config.
+    /* The watchdog may already be running from the default config. */
     esp_err_t err = esp_task_wdt_init(&cfg);
     if (err == ESP_ERR_INVALID_STATE) {
         esp_task_wdt_reconfigure(&cfg);
@@ -69,15 +69,15 @@ static void wdt_setup(void)
  */
 void app_main(void)
 {
-    // Status LED.
+    /* Status LED. */
     gpio_reset_pin(LED_PIN);
     gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
 
-    // Peripherals.
+    /* Peripherals. */
     ESP_ERROR_CHECK(sensor_init());
     ESP_ERROR_CHECK(logger_init());
 
-    // Queue between the sensor task and the logger task.
+    /* Queue between the sensor task and the logger task. */
     sensor_queue = xQueueCreate(QUEUE_LENGTH, sizeof(sensor_data_t));
     if (sensor_queue == NULL) {
         ESP_LOGE(TAG, "failed to create sensor queue");

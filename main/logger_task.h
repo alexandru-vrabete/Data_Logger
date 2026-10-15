@@ -24,4 +24,4 @@ esp_err_t logger_init(void);
  */
 void uart_logger_task(void *arg);
 
-#endif // LOGGER_TASK_H
+#endif /* LOGGER_TASK_H */

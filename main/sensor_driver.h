@@ -43,4 +43,4 @@ esp_err_t sensor_read(sensor_data_t *out);
  */
 void sensor_task(void *arg);
 
-#endif // SENSOR_DRIVER_H
+#endif /* SENSOR_DRIVER_H */
