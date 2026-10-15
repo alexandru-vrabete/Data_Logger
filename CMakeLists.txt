@@ -1,0 +1,5 @@
+# Top-level project file for ESP-IDF.
+cmake_minimum_required(VERSION 3.16)
+
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+project(data_logger)
